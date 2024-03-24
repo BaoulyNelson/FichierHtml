@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+    }
+    
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    
+    nav ul li {
+      display: inline;
+    }
+    
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+    }
+    
+    nav ul li a:hover {
+      background-color: #555;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    .answer, .nav-content {
+      display: none;
+    }
+    
+    .faq {
+      margin-top: 20px;
+    }
+    
+    .question {
+      display: block;
+      margin-bottom: 10px;
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#" class="nav-link" onclick="toggleContent(this)">Accueil</a></li>
+        <li><a href="#" class="nav-link" onclick="toggleContent(this)">FAQ</a></li>
+        <li><a href="#" class="nav-link" onclick="toggleContent(this)">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Foire Aux Questions</h1>
+
+    <div class="faq">
+      <a href="#" class="question" onclick="toggleAnswer(this)">Question 1</a>
+      <div class="answer">Réponse à la question 1</div>
+
+      <a href="#" class="question" onclick="toggleAnswer(this)">Question 2</a>
+      <div class="answer">Réponse à la question 2</div>
+
+      <a href="#" class="question" onclick="toggleAnswer(this)">Question 3</a>
+      <div class="answer">Réponse à la question 3</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function toggleAnswer(questionLink) {
+      var answer = questionLink.nextElementSibling;
+      if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+      } else {
+        answer.style.display = 'block';
+      }
+    }
+    
+    function toggleContent(navLink) {
+      var content = document.querySelector('.nav-content');
+      if (content) {
+        content.style.display = 'none';
+        content.classList.remove('nav-content');
+      }
+      var target = navLink.getAttribute('data-target');
+      var targetElement = document.getElementById(target);
+      if (targetElement) {
+        targetElement.style.display = 'block';
+        targetElement.classList.add('nav-content');
+      }
+    }
+    
+    var questionLinks = document.querySelectorAll('.question');
+    questionLinks.forEach(function(link) {
+      link.addEventListener('mouseenter', function() {
+        var answer = this.nextElementSibling;
+        answer.style.display = 'block';
+      });
+    
+      link.addEventListener('mouseleave', function() {
+        var answer = this.nextElementSibling;
+        if (!this.classList.contains('active')) {
+          answer.style.display = 'none';
+        }
+      });
+    
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        var answer = this.nextElementSibling;
+        answer.style.display = 'block';
+        this.classList.add('active');
+      });
+    });
+    
+    var navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(function(link) {
+      link.addEventListener('mouseenter', function() {
+        toggleContent(this);
+      });
+    
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        toggleContent(this);
+      });
+    });
+    
+  </script>
+</body>
+</html>

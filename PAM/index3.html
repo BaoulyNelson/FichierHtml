@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mon site Baouly</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="CSS/stylesDate.css">
+
+  <!-- Ajout de Font Awesome pour l'icône de recherche -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"></script>
+
+  <style>
+    body {
+        font-family: Arial, sans-serif; /* Choix d'une police de caractères lisible */
+        margin: 0; /* Supprime les marges par défaut du navigateur */
+        padding: 0; /* Supprime les marges intérieures par défaut du navigateur */
+        background-color: #f0f0f0; /* Choix d'une couleur de fond */
+        color: #333; /* Couleur de texte par défaut */
+        line-height: 1.1; /* Espacement entre les lignes pour une meilleure lisibilité */
+      }
+      
+    /* Style the navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  position: relative; /* Ajoutez cette ligne pour positionner correctement l'icône */
+  overflow: hidden;
+  list-style-type: none;
+
+  }
+  .navbar li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  .navbar-nav li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* Style the sidebar */
+  .sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    padding-top: 60px;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+  
+  /* Sidebar links */
+  .sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+/* Ajoutez ces styles CSS pour décaler le contenu principal lorsque le panneau latéral est ouvert */
+.main {
+    transition: margin-left 0.5s; /* Ajoute une transition pour un effet de déplacement fluide */
+    margin-left: 0; /* Par défaut, le contenu principal n'est pas décalé */
+  }
+  
+  .sidebar-open .main {
+    margin-left: 250px; /* Décale le contenu principal vers la droite de la largeur du panneau latéral */
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1; /* Couleur de texte au survol */
+    background-color: #333; /* Couleur de fond au survol */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre au survol */
+  }
+  
+  
+  /* Button to open the sidebar */
+  .openbtn {
+    font-size: 36px;
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: white;
+  }
+  
+
+/* Styles pour l'icône de recherche */
+.search-icon {
+    position: relative;
+    font-size: 20px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: #fff; /* Couleur de l'icône */
+    margin-left: 10px; /* Ajoutez une marge entre les liens et l'icône */
+  }
+  
+</style>
+</head>
+<body>
+  <p id="current-time"><i class="fa fa-clock-o"></i></p>
+  <div class="navbar">
+    <button class="openbtn" onclick="openNav()">☰</button>
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <ul> <!-- Ouvrir une liste non ordonnée -->
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul> <!-- Fermer la liste non ordonnée -->
+    </div>
+  
+    <div class="navbar-right">
+      <a href="#">Accueil</a>
+      <a href="#">Contact</a>
+      <a href="#">Reseaux</a>
+    </div>
+  <!-- Zone de saisie de recherche (initialement cachée) -->
+<form id="searchForm" class="d-flex mt-3" role="search" style="display: none;">
+  <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  <button id="searchButton" class="btn btn-success" type="submit">Search</button>
+</form>
+
+    <!-- Icône de recherche -->
+    <div class="search-icon" onclick="toggleSearch()">
+      <i id="searchIcon" class="fas fa-search"></i>
+    </div>
+
+  </div> <!-- Fermer la div avec la classe "navbar" -->
+  
+
+
+<div class="main">
+  <h2>Main Content</h2>
+  <p>This is where your main content goes.</p>
+  
+</div>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.body.classList.add('sidebar-open'); // Ajoute la classe pour modifier le style du contenu principal
+      }
+      
+      function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.body.classList.remove('sidebar-open'); // Retire la classe pour revenir à la position normale du contenu principal
+      }
+      // Fonction pour filtrer les liens
+function filterLinks(event) {
+  // Empêcher le comportement par défaut du formulaire (rechargement de la page)
+  event.preventDefault();
+
+  // Récupérer la valeur saisie dans le champ de recherche
+  var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+  // Récupérer tous les liens à filtrer
+  var links = document.querySelectorAll('.link');
+
+  // Parcourir tous les liens
+  links.forEach(function(link) {
+    // Récupérer le texte du lien en minuscules
+    var linkText = link.textContent.toLowerCase();
+    
+    // Vérifier si le texte du lien contient le terme de recherche
+    if (linkText.includes(searchTerm)) {
+      // Afficher le lien s'il correspond au terme de recherche
+      link.style.display = 'block';
+    } else {
+      // Masquer le lien s'il ne correspond pas au terme de recherche
+      link.style.display = 'none';
+    }
+  });
+}
+
+// Fonction pour masquer la zone de saisie de recherche (initialement visible) au chargement de la page
+window.onload = function() {
+  document.getElementById('searchForm').style.display = 'none';
+};
+
+// Fonction pour basculer la visibilité de la zone de saisie de recherche
+function toggleSearch() {
+  var searchForm = document.getElementById('searchForm');
+
+  if (searchForm.style.display === 'none') {
+    // Afficher la zone de saisie de recherche si elle est cachée
+    searchForm.style.display = 'block';
+  } else {
+    // Cacher la zone de saisie de recherche si elle est visible
+    searchForm.style.display = 'none';
+  }
+}
+
+</script>
+
+<script src="SCRIPT/scriptDate.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-kGGg3HBuj6+H8F5I7QZVvuzi7pIyApcw5Xr/29Xwgf8D6+UJzr+I7CKEVCpXYj0F" crossorigin="anonymous"></script>
+
+</body>
+</html>

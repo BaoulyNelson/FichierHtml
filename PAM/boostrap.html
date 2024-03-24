@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar personnalisée avec Bootstrap</title>
+  <!-- Intégration de Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Vos styles CSS personnalisés -->
+  <style>
+    /* Styles personnalisés pour le panneau latéral */
+    #sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #fff; /* Couleur de fond du panneau */
+      overflow-x: hidden;
+      transition: 0.5s; /* Transition douce pour l'ouverture/fermeture du panneau */
+      padding-top: 60px; /* Assurez-vous que le contenu ne soit pas caché par la barre de navigation */
+    }
+
+    #sidebar a {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #000;
+      display: block;
+      transition: 0.3s; /* Transition douce pour les liens dans le panneau */
+    }
+
+    #sidebar a:hover {
+      color: #007bff; /* Couleur du texte au survol */
+    }
+
+    #sidebar .close-btn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Bouton pour ouvrir le panneau latéral -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="openNav()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- Liens à l'extrémité droite -->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">À propos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Contact</a>
+    </li>
+  </ul>
+  
+  <!-- Contenu de la navbar à gauche -->
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <!-- Liens à afficher dans le panneau latéral -->
+      <li class="nav-item">
+        <a class="nav-link" href="#">Lien 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Lien 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Lien 3</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Lien 4</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Panneau latéral -->
+<div id="sidebar">
+  <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  <a href="#">Link 4</a>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("sidebar").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("sidebar").style.width = "0";
+}
+</script>
+
+<!-- Intégration de Bootstrap JS (jQuery requis) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
